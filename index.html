@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atelier Maren — Bespoke Dressmaking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --linen:#efe9dc;
+    --ink:#221f1a;
+    --thread:#7a2e2e;
+    --thread-light:#a5504f;
+    --gold:#b8924a;
+    --line:#d9d0bd;
+    --max:1080px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--linen);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  h1,h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* stitched divider signature element */
+  .stitch{
+    width:100%;
+    height:18px;
+    background-image:repeating-linear-gradient(
+      to right,
+      var(--thread) 0 14px,
+      transparent 14px 26px
+    );
+    background-repeat:no-repeat;
+    background-size:100% 1.5px;
+    background-position:center;
+    opacity:0.5;
+  }
+
+  header{
+    padding:28px 0;
+    position:sticky;
+    top:0;
+    background:rgba(239,233,220,0.92);
+    backdrop-filter:blur(6px);
+    z-index:50;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.5rem;
+    letter-spacing:0.04em;
+  }
+  .brand em{font-style:italic;color:var(--thread);}
+  nav ul{list-style:none;}
+  nav a{
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0%;
+    height:1px;
+    background:var(--thread);
+    transition:width 0.25s ease;
+  }
+  nav a:hover::after{width:100%;}
+
+  /* hero */
+  .hero{
+    padding:130px 0 110px;
+    text-align:center;
+  }
+  .hero .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--thread);
+    display:inline-block;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.8rem,7vw,5.4rem);
+    line-height:1.05;
+    margin-bottom:20px;
+  }
+  .hero h1 .accent{font-style:italic;color:var(--thread);}
+  .hero p.lede{
+    font-size:1.1rem;
+    color:#4a453c;
+    max-width:46ch;
+    margin:0 auto;
+  }
+
+  section{padding:70px 0;}
+  .section-head{
+    text-align:center;
+    margin-bottom:48px;
+  }
+  .section-head .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--thread);
+    display:block;
+    margin-bottom:14px;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem,3.4vw,2.6rem);
+  }
+
+  /* gallery */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .gallery-grid img{
+    width:100%;
+    height:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+  }
+  .gallery-empty{
+    text-align:center;
+    color:#8a8272;
+    font-size:0.92rem;
+    padding:40px 0;
+    border:1px dashed var(--line);
+  }
+
+  /* contact */
+  .contact{background:var(--ink);color:var(--linen);}
+  .contact .wrap{max-width:560px;text-align:center;}
+  .contact .section-head .eyebrow{color:var(--gold);}
+  .contact .section-head h2{color:var(--linen);}
+  .contact p.lede{color:#d8d2c4;max-width:48ch;margin:0 auto 26px;}
+  .contact-details a{
+    display:block;
+    font-size:1.1rem;
+    margin-bottom:10px;
+    border-bottom:1px solid transparent;
+  }
+  .contact-details a:hover{border-color:var(--gold);}
+  .contact-hours{
+    margin-top:32px;
+    padding-top:24px;
+    border-top:1px solid #4a4438;
+  }
+  .contact-hours h3{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:1.1rem;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .contact-hours p{
+    font-size:0.9rem;
+    color:#d8d2c4;
+    margin-bottom:4px;
+  }
+
+  footer{
+    padding:30px 0;
+    text-align:center;
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    color:#8a8272;
+    background:var(--ink);
+  }
+
+  @media (max-width:860px){
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .hero{padding:90px 0 70px;}
+    section{padding:56px 0;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    nav a::after{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Artenisa <em>Studio</em></div>
+    <nav>
+      <ul>
+        <li><a href="#contact">Contatta</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Artenisa <span class="accent">Studio</span></h1>
+    <p class="lede">sottotitolo..............................</p>
+  </div>
+</section>
+
+<div class="stitch"></div>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">testo</span>
+      <h2>Galleria</h2>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Prenota un appuntamento</h2>
+    </div>
+    <div class="contact-details" style="margin-top:-32px;">
+      <a href="mailto:hello@email.example">hello@email.example</a>
+      <a href="tel:+390000000000">+39 000 000 0000</a>
+      <a href="#">Via x, x</a>
+    </div>
+    <div class="contact-hours">
+      <h3>Orari (solo su appuntamento):</h3>
+      <p>Tuesday – Friday, 10:00 – 18:00</p>
+      <p>Saturday, 10:00 – 14:00</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Artenisa Studio.
+</footer>
+
+<script>
+  const galleryImages = [
+    "1.jpg",
+    "2.png",
+    "3.jpg",
+    "4.png",
+    "5.jpg",
+    "6.jpg"
+  ];
+
+  const grid = document.getElementById('gallery-grid');
+
+  if (galleryImages.length === 0) {
+    grid.innerHTML = '<div class="gallery-empty">Add photo file names to the galleryImages list near the bottom of index.html to see them here.</div>';
+  } else {
+    galleryImages.forEach(file => {
+      const img = document.createElement('img');
+      img.src = 'images/' + file;
+      img.alt = 'Artenisa Studio — ' + file.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+      img.loading = 'lazy';
+      grid.appendChild(img);
+    });
+  }
+</script>
+
+</body>
+</html>
